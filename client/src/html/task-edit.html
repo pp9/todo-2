@@ -1,0 +1,42 @@
+<form data-id={data id} action="#" id="task-edit-form" class="task-edit-form">
+    <fieldset class="form-group">
+        <label for="task-name">Title</label>
+        <input type="text" class="form-control"
+        name="task-name" placeholder="title"
+        value="{data name}">
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="taks-text-note">Text</label>
+        <textarea class="form-control" name="taks-text-note" cols="30" rows="5">{data textNote}</textarea>
+    </fieldset>
+
+    {each items}
+    <fieldset class="form-group">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">
+                    <input type="checkbox" {if done} checked {/if}>
+                </span>
+                <input type="text"
+                class="form-control"
+                data-item-id="{data id}"
+                name="task-item"
+                placeholder="item"
+                value="{data text}">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary remove-item" type="button">&times;</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    </fieldset>
+    {/each}
+
+    <div class="form-group">
+        <button id="add-item" class="btn btn-secondary btn-sm">Add item</button>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="save" >
+    <input type="reset" class="btn btn-warning" value="Cancel">
+</form>

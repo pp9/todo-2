@@ -1,0 +1,36 @@
+.main-list {
+    margin: 2em 0;
+}
+.task {
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+    &:hover {
+        box-shadow: 0 0 5px rgba(0,0,0,.5);
+        cursor: pointer;
+    }
+    &.editable {
+        .task__item {
+            &--add {
+                display: list-item;
+            }
+        }
+    }
+}
+.task__name {
+    margin-top: 0;
+}
+.task__body {
+    padding: 0;
+}
+.task__item {
+    list-style-type: none;
+    margin-bottom: 1rem;
+    > input {
+        float: left;
+    }
+    &--add {
+        display: none;
+    }
+}

@@ -1,0 +1,24 @@
+<ul class="list-unstyled">
+{each tasks}
+    <li class="task" data-id={data id}>
+        <h4 class="task__name">{data name}</h4>
+        <p class="task__text-note">{data textNote}</p>
+        <ul class="task__body">
+
+            {each items}
+                <li class="task__item">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" {if done} checked {/if}>
+                        {data text}
+                      </label>
+                    </div>
+                </li>
+            {/each}
+
+            <li class="task__item task__item--add">add an item</li>
+        </ul>
+    </li>
+{/each}
+</ul>
+<button class="btn btn-secondary pull-xs-right" id="add-new-task">Add new task</button>

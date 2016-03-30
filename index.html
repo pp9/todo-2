@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo app</title>
+    <link rel="stylesheet" href="client/build/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="main-list col-sm-12" id="main-list"></div>
+            <div id="edit-form" class="col-sm-6"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-id">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body" id="task-edit-container"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="edit-save">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <script src="bower_components/jquery/dist/jquery.js"></script>
+     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+     <script src="client/src/js/http.js"></script>
+     <script src="client/src/js/template.js"></script>
+     <script src="client/src/js/model.js"></script>
+     <script src="client/src/js/home.js"></script>
+</body>
+</html>
