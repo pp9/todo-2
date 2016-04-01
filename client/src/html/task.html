@@ -1,7 +1,7 @@
 <ul class="list-unstyled">
 {each tasks}
     <li class="task" data-id={data id}>
-        <h4 class="task__name">{data name}</h4>
+        <h4 class="task__name">{data name} <button class="close task__remove-task">&times;</button></h4>
         <p class="task__text-note">{data textNote}</p>
         <ul class="task__body">
 

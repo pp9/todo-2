@@ -20,6 +20,12 @@ const model = (($, template) =>{
     Model.prototype.add = function(task){
         this.data.tasks.push(task);
     };
+    Model.prototype.remove = function(taskId) {
+        // console.log(this.data);
+        this.data.tasks = this.data.tasks.filter(el => {
+            if(el.id !== taskId) return el;
+        });
+    };
 
     Model.prototype.save = function() {
         var ajax = new XMLHttpRequest();
