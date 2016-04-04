@@ -1,6 +1,6 @@
 'use strict';
 
-const model = (($, template) =>{
+const model = (($, template) => {
     let Task = function (id, name, textNote, items) {
         this.id = id;
         this.name = name || '';
@@ -21,7 +21,6 @@ const model = (($, template) =>{
         this.data.tasks.push(task);
     };
     Model.prototype.remove = function(taskId) {
-        // console.log(this.data);
         this.data.tasks = this.data.tasks.filter(el => {
             if(el.id !== taskId) return el;
         });
