@@ -1,8 +1,6 @@
 'use strict';
 
-const home = (($, http, template) => {
-
-    const $mainListContainer = $('#main-list');
+const homeCntr = (() => {
 
     let db = new model.Model;
     let taskTmpl;
@@ -14,16 +12,11 @@ const home = (($, http, template) => {
         })
         .then((json) => {
             db.data = json;
-            http.get('/client/src/html/task.html')
-                .then((res) => {
-                    taskTmpl = res;
-                    render(db.data, taskTmpl, $mainListContainer);
-                });
+            taskView.init();
         });
 
 
     function render(data, tmpl, container) {
-        console.log('rend');
         let tmp = template.compile(tmpl, data);
         container.html(tmp);
     }
@@ -43,8 +36,9 @@ const home = (($, http, template) => {
 
         let item = new model.Task(itemId);
         task.items.push(item);
+        itemView.init(item);
 
-        render(task, taskEditFormTmpl, $('#task-edit-container'));
+        // render(task, taskEditFormTmpl, $('#task-edit-container'));
     }
 
     function removeItem() {
@@ -75,36 +69,19 @@ const home = (($, http, template) => {
     function addNewTask() {
         let newTaskId = db.getLastId() + 1;
         let task = new model.Task(newTaskId);
-
-        http.get('./client/src/html/task-edit.html')
-            .then(data => {
-                taskEditFormTmpl = data;
-                render(task, data, $('#task-edit-container'));
-            })
-            .then(() => {
-                $('#modal-id').modal('show');
-            });
+        editTaskView.init(task);
     }
 
-    function editTask(taskId) {
-        let id = parseInt(taskId);
+    function editTask() {
+        let id = parseInt($(this).data('id'));
         let task = db.get(id);
-
-        http.get('./client/src/html/task-edit.html')
-            .then(data => {
-                taskEditFormTmpl = data;
-                render(task, data, $('#task-edit-container'));
-            })
-            .then(() => {
-                $('#modal-id').modal('show');
-            });
+        editTaskView.init(task);
     }
 
-    function closeEditForm (e) {
-        e.preventDefault();
-        $editFormContainer.html('');
-
-    }
+    // function closeEditForm (e) {
+    //     e.preventDefault();
+    //     $editFormContainer.html('');
+    // }
     function submitEditForm(e) {
         e.preventDefault();
 
@@ -123,7 +100,7 @@ const home = (($, http, template) => {
             item = new model.Item(i, itemText, done);
             task.items.push(item);
         });
-        console.log(task);
+        // console.log(task);
         db.data.tasks[currentId] = task;
 
 
@@ -132,24 +109,38 @@ const home = (($, http, template) => {
         $('#modal-id').modal('hide');
     }
     $(document).on('submit', '#task-edit-form', submitEditForm);
-    $(document).on('reset', '#task-edit-form', closeEditForm);
+    // $(document).on('reset', '#task-edit-form', closeEditForm);
     $(document).on('click', '#edit-save', submitEditForm);
 
     $(document).on('click', '.remove-item', removeItem);
 
 
-    $(document).on('click', '.task', function (e) {
-        if($(e.target).hasClass('close') || $(e.target).is('input')) return false;
+    // $(document).on('click', '.task', function (e) {
+    //     if($(e.target).hasClass('close') || $(e.target).is('input')) return false;
 
-        editTask($(this).data('id'));
-    });
+    //     editTask($(this).data('id'));
+    // });
 
     $(document).on('click', '#add-new-task', addNewTask);
 
     // $(document).on('click', '#add-text-note', addTextNote);
-    $(document).on('click', '#add-item', addItem);
+    // $(document).on('click', '#add-item', addItem);
     $(document).on('change', '.done-checkbox', itemDoneToggle);
     $(document).on('click', '.task__remove-task', removeTask);
 
 
-})(jQuery, http, template);
+    function getData() {
+        return http.get('/?data=all')
+                .then((data) => {
+                    return JSON.parse(data);
+                });
+    }
+
+    return {
+        getData: getData,
+        editTask: editTask,
+        addItem: addItem
+    }
+
+
+})();
