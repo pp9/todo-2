@@ -25,6 +25,29 @@ const taskView = {
     }
 }
 
+const editItemView = {
+    addEvents() {
+        this.$container.on('click', '.remove-item', homeCntr.removeItem);
+    },
+    init(task) {
+        this.$container = $('#edit-item-list');
+        this.template = function() {
+            return http.get('./client/src/html/task-edit-item.html');
+        }
+        this.addEvents();
+        this.render(task);
+    },
+    render(task) {
+        let items = {
+            items: task.items
+        }
+        this.template().then(tmpl => {
+            let tmp = template.compile(tmpl, items);
+            this.$container.html(tmp);
+        })
+    }
+}
+
 const editTaskView = {
     addEvents() {
         this.$container.on('click', '#add-item', homeCntr.addItem);
@@ -43,21 +66,14 @@ const editTaskView = {
         this.template().then(tmpl => {
             let tmp = template.compile(tmpl, this.task);
             this.$container.html(tmp);
+            return tmp;
+        })
+        .then(tmp => {
+            this.subViews.init(this.task);
         })
         .then(() => {
             $('#modal-id').modal('show');
         })
-    }
-}
-const itemView = {
-    addEvents() {
-
     },
-    init(item) {
-        this.addEvents();
-        this.render();
-    },
-    render() {
-
-    }
+    subViews: editItemView
 }

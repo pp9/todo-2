@@ -1,0 +1,22 @@
+{each items}
+<fieldset class="form-group">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">
+                <input type="checkbox" {if done} checked {/if} class="done-checkbox">
+            </span>
+            <input type="text"
+            class="form-control"
+            data-item-id="{data id}"
+            name="task-item"
+            placeholder="item"
+            value="{data text}">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary remove-item" type="button">&times;</button>
+            </span>
+        </div>
+    </div>
+</div>
+</fieldset>
+{/each}

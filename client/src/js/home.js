@@ -76,6 +76,8 @@ const homeCntr = (() => {
         let id = parseInt($(this).data('id'));
         let task = db.get(id);
         editTaskView.init(task);
+        
+        // editItemView.init(task);
     }
 
     // function closeEditForm (e) {
@@ -100,7 +102,6 @@ const homeCntr = (() => {
             item = new model.Item(i, itemText, done);
             task.items.push(item);
         });
-        // console.log(task);
         db.data.tasks[currentId] = task;
 
 
@@ -112,7 +113,7 @@ const homeCntr = (() => {
     // $(document).on('reset', '#task-edit-form', closeEditForm);
     $(document).on('click', '#edit-save', submitEditForm);
 
-    $(document).on('click', '.remove-item', removeItem);
+    // $(document).on('click', '.remove-item', removeItem);
 
 
     // $(document).on('click', '.task', function (e) {
@@ -139,7 +140,8 @@ const homeCntr = (() => {
     return {
         getData: getData,
         editTask: editTask,
-        addItem: addItem
+        addItem: addItem,
+        removeItem: removeItem
     }
 
 
