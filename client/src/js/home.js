@@ -25,8 +25,8 @@ const homeCntr = (() => {
         let taskId = parseInt($this.parents('.task').data('id'));
 
         db.remove(taskId);
-        render(db.data, taskTmpl, $mainListContainer);
         db.save();
+        taskView.init();
     }
 
     function addItem() {
@@ -36,9 +36,8 @@ const homeCntr = (() => {
 
         let item = new model.Task(itemId);
         task.items.push(item);
-        itemView.init(item);
-
-        // render(task, taskEditFormTmpl, $('#task-edit-container'));
+        
+        editItemView.render(item);
     }
 
     function removeItem() {
@@ -87,7 +86,6 @@ const homeCntr = (() => {
     function submitEditForm(e) {
         e.preventDefault();
 
-
         let $form = $('#task-edit-form'),
         currentId = $form.data('id'),
         title = $form.find('input[name=task-name]').val(),
@@ -103,13 +101,16 @@ const homeCntr = (() => {
             task.items.push(item);
         });
         db.data.tasks[currentId] = task;
+        console.log(task);
 
 
-        render(db.data, taskTmpl, $mainListContainer);
+        taskView.init();
         db.save();
         $('#modal-id').modal('hide');
+
+        return false;
     }
-    $(document).on('submit', '#task-edit-form', submitEditForm);
+    // $(document).on('submit', '#task-edit-form', submitEditForm);
     // $(document).on('reset', '#task-edit-form', closeEditForm);
     $(document).on('click', '#edit-save', submitEditForm);
 
@@ -141,7 +142,7 @@ const homeCntr = (() => {
         getData: getData,
         editTask: editTask,
         addItem: addItem,
-        removeItem: removeItem
+        removeItem: removeItem,
     }
 
 

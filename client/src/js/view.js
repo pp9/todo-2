@@ -28,6 +28,7 @@ const taskView = {
 const editItemView = {
     addEvents() {
         this.$container.on('click', '.remove-item', homeCntr.removeItem);
+        this.$container.on('click', '#add-item', homeCntr.removeItem);
     },
     init(task) {
         this.$container = $('#edit-item-list');
@@ -51,6 +52,7 @@ const editItemView = {
 const editTaskView = {
     addEvents() {
         this.$container.on('click', '#add-item', homeCntr.addItem);
+        // this.$container.on('click', '#edit-save', homeCntr.submitEditForm);
     },
     init(task) {
         this.$container = $('#task-edit-container');
