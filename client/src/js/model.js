@@ -1,22 +1,33 @@
 'use strict';
 
-const model = (($, template) => {
-    let Task = function (id, name, textNote, items) {
-        this.id = id;
-        this.name = name || '';
-        this.textNote = textNote || '';
-        this.items = items || [];
+const model = (() => {
+
+    function Collection(items) {
+        this.childs = items || [];
     }
 
-    let Item = function (id, text, done) {
-        this.id = id;
-        this.text = text || '';
-        this.done = done || false;
+    const Task = function (data) {
+        this.id = data.id;
+        this.name = data.name || '';
+        this.textNote = data.textNote || '';
+        this.items = data.items || [];
+    }
+
+    const Item = function (data) {
+        this.id = data.id;
+        this.text = data.text || '';
+        this.done = data.done || false;
     }
 
     function Model() {
         this.data = {};
     }
+
+    Collection.prototype.add = function(item) {
+        this.childs.push(item);
+    }
+
+
     Model.prototype.add = function(task){
         this.data.tasks.push(task);
     };
@@ -49,8 +60,9 @@ const model = (($, template) => {
 
     return {
         Model: Model,
+        Collection: Collection,
         Task: Task,
         Item: Item,
 
     }
-})(jQuery, template);
+})();

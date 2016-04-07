@@ -1,9 +1,9 @@
 'use strict';
 
 const homeCntr = (() => {
-
     let db = new model.Model;
-    let taskTmpl;
+
+    // let taskTmpl;
     let taskEditFormTmpl;
 
     http.get('/?data=all')
@@ -11,6 +11,7 @@ const homeCntr = (() => {
             return JSON.parse(data);
         })
         .then((json) => {
+            // console.log(json);
             db.data = json;
             taskView.init();
         });
