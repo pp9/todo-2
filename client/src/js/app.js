@@ -57,9 +57,9 @@ angular.module('todo', [])
             }
 
             $http(req).then(function(){
-                console.log('eroor');
+                $('#modal-id').modal('hide');
             }, function(){
-                console.log('done');
+                console.log('error');
             });
         }
     })

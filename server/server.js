@@ -59,7 +59,10 @@ const server = http.createServer(function(req, res) {
             body += d;
             // console.log(body);
             fs.writeFile(db, body);
-        })
+        });
+
+        res.writeHeader(200);
+        res.end();
         // if(rUrl.query !== null) {
         //     console.log();
         // }
