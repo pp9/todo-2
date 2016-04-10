@@ -35,7 +35,7 @@ angular.module('todo', [])
         $scope.addItem = function() {
             let newItem = new Item({});
             $scope.currentTask.items.push(newItem);
-            console.log(newItem);
+            // console.log(newItem);
         }
         $scope.removeItem = function(index) {
             $scope.currentTask.items.splice(index, 1);
