@@ -53,9 +53,7 @@ const server = http.createServer(function(req, res) {
                 break;
         }
     }else {
-        // fs.writeFile('./post.json', JSON.stringify(req.));
         let rUrl = url.parse(req.url, true);
-        // console.log(req);
         let body = '';
         req.on('data', (d) => {
             body += d;
