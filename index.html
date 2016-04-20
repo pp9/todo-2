@@ -8,89 +8,12 @@
     <script src="node_modules/tether/dist/js/tether.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/angular/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
     <script src="client/src/js/app.js"></script>
 </head>
 <body ng-app="todo">
-    <div class="container" ng-controller="MainCntr">
 
-        <div class="row">
-            <div class="main-list col-sm-12">
-                <ul class="list-unstyled">
-                    <li class="task" ng-repeat="task in tasks" ng-click="editTask(task)">
-                        <h4 class="task__name">{{task.name}} <button class="close task__remove-task">&times;</button></h4>
-                        <p class="task__text-note">{{task.textNote}}</p>
-                        <ul class="task__body">
-                            <li class="task__item" ng-repeat="item in task.items">
-                                <div class="checkbox">
-                                  <label>
-                                    <input type="checkbox" ng-model="item.done">
-                                    {{item.text}}
-                                  </label>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <button class="btn btn-secondary pull-xs-right" id="add-new-task">Add new task</button>
-            </div>
-        </div>
-
-        <div class="modal fade" id="modal-id">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" autocomplete="off">
-                            <fieldset class="form-group">
-                                <label for="task-name">Title</label>
-                                <input type="text" class="form-control" placeholder="title" ng-model="currentTask.name">
-                            </fieldset>
-
-                            <fieldset class="form-group">
-                                <label for="taks-text-note">Text</label>
-                                <textarea class="form-control" 
-                                name="taks-text-note" cols="30" rows="5" 
-                                ng-model="currentTask.textNote"></textarea>
-                            </fieldset>
-
-                            <div ng-repeat="currentItem in currentTask.items">
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" class="done-checkbox" ng-model="currentItem.done">
-                                            </span>
-                                            <input type="text"
-                                            class="form-control"
-                                            placeholder="item"
-                                            ng-model="currentItem.text">
-                                            <span class="input-group-btn">
-                                              <button class="btn btn-secondary" type="button" ng-click="removeItem($index)">&times;</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="button" class="btn btn-secondary btn-sm" ng-click="addItem()">Add item</button>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="saveTask()">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <div ng-view></div>
+    
 </body>
 </html>
