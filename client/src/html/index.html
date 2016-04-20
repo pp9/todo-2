@@ -3,7 +3,9 @@
         <div class="main-list col-sm-12">
             <ul class="list-unstyled">
                 <li class="task" ng-repeat="task in tasks" ng-click="editTask(task)">
-                    <h4 class="task__name">{{task.name}} <button class="close task__remove-task" ng-click="removeTask($index);  $event.stopPropagation();">&times;</button></h4>
+                    <h4 class="task__name">{{task.name}}
+                      <button class="close task__remove-task" ng-click="removeTask($index);  $event.stopPropagation();">&times;</button>
+                    </h4>
                     <p class="task__text-note">{{task.textNote}}</p>
                     <ul class="task__body">
                         <li class="task__item" ng-repeat="item in task.items">
@@ -17,7 +19,7 @@
                     </ul>
                 </li>
             </ul>
-            <button class="btn btn-secondary pull-xs-right" ng-click="addTask()">Add new task</button>
+            <button class="btn btn-success-outline btn-add-new" ng-click="addTask()">Add new task</button>
         </div>
     </div>
 
@@ -37,8 +39,8 @@
 
                         <fieldset class="form-group">
                             <label for="taks-text-note">Text</label>
-                            <textarea class="form-control" 
-                            name="taks-text-note" cols="30" rows="5" 
+                            <textarea class="form-control"
+                            name="taks-text-note" cols="30" rows="5"
                             ng-model="currentTask.textNote"></textarea>
                         </fieldset>
 

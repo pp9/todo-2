@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.3",
+    "angular-ui-router": "^0.2.18",
     "bootstrap": "^4.0.0-alpha.2",
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
